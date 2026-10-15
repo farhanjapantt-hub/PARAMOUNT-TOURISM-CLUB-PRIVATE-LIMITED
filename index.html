@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paramount Tourism Club</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+#ptc{
+  --green:#0f4c3a; --green-2:#16694f; --gold:#d9a441; --cream:#faf6ee;
+  --ink:#1d2622; --muted:#5d6b64; --white:#fff;
+  font-family:'Poppins',sans-serif; color:var(--ink); background:var(--cream);
+  line-height:1.6; overflow-x:hidden;
+}
+#ptc *{box-sizing:border-box; margin:0; padding:0;}
+#ptc a{text-decoration:none; color:inherit;}
+#ptc .wrap{max-width:1180px; margin:0 auto; padding:0 20px;}
+#ptc h1,#ptc h2,#ptc h3{font-family:'Playfair Display',serif; line-height:1.2;}
+#ptc .tag{display:inline-block; color:var(--gold); font-weight:600; letter-spacing:2px; text-transform:uppercase; font-size:13px; margin-bottom:10px;}
+#ptc .sec{padding:90px 0;}
+#ptc .sec-head{text-align:center; max-width:640px; margin:0 auto 50px;}
+#ptc .sec-head h2{font-size:clamp(28px,4vw,42px); color:var(--green); margin-bottom:12px;}
+#ptc .sec-head p{color:var(--muted);}
+#ptc .btn{display:inline-block; padding:14px 30px; border-radius:50px; font-weight:600; transition:.3s; cursor:pointer; border:none; font-size:15px; font-family:inherit;}
+#ptc .btn-gold{background:var(--gold); color:var(--ink);}
+#ptc .btn-gold:hover{background:#c8922f; transform:translateY(-2px);}
+#ptc .btn-line{border:2px solid var(--white); color:var(--white); background:transparent;}
+#ptc .btn-line:hover{background:var(--white); color:var(--green);}
+#ptc .nav{position:sticky; top:0; z-index:50; background:rgba(15,76,58,.97); backdrop-filter:blur(6px);}
+#ptc .nav .wrap{display:flex; align-items:center; justify-content:space-between; height:72px;}
+#ptc .logo{display:flex; align-items:center; gap:10px; color:var(--white); font-family:'Playfair Display',serif; font-size:20px; font-weight:700;}
+#ptc .logo-mark{width:40px; height:40px; border-radius:50%; background:var(--gold); display:grid; place-items:center; color:var(--green); font-size:20px;}
+#ptc .logo small{display:block; font-family:'Poppins'; font-size:10px; letter-spacing:3px; color:var(--gold); font-weight:500;}
+#ptc .menu{display:flex; gap:30px; list-style:none;}
+#ptc .menu a{color:#e6efe9; font-size:15px; transition:.2s;}
+#ptc .menu a:hover{color:var(--gold);}
+#ptc .burger{display:none; background:none; border:none; color:var(--white); font-size:28px; cursor:pointer;}
+#ptc .hero{min-height:88vh; display:flex; align-items:center; color:var(--white); position:relative;
+  background:linear-gradient(120deg,rgba(10,45,35,.88),rgba(15,76,58,.55)),
+  linear-gradient(160deg,#2c6e5a 0%,#5b8f7b 40%,#c9a46a 75%,#e8c88d 100%);}
+#ptc .hero::after{content:""; position:absolute; bottom:0; left:0; right:0; height:160px; background:linear-gradient(transparent,var(--cream)); pointer-events:none;}
+#ptc .hero .wrap{position:relative; z-index:2;}
+#ptc .hero h1{font-size:clamp(38px,6vw,72px); max-width:760px; margin-bottom:20px;}
+#ptc .hero h1 span{color:var(--gold);}
+#ptc .hero p{font-size:18px; max-width:560px; opacity:.9; margin-bottom:34px;}
+#ptc .hero-btns{display:flex; gap:14px; flex-wrap:wrap;}
+#ptc .peaks{position:absolute; bottom:0; left:0; width:100%; z-index:1; opacity:.35;}
+#ptc .about{display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center;}
+#ptc .about-img{height:440px; border-radius:20px; position:relative; background:linear-gradient(145deg,#16694f,#0f4c3a 50%,#d9a441);}
+#ptc .about-img .badge{position:absolute; bottom:-25px; right:-15px; background:var(--gold); padding:22px 26px; border-radius:16px; font-weight:600; box-shadow:0 15px 35px rgba(0,0,0,.15);}
+#ptc .about-img .badge b{font-family:'Playfair Display'; font-size:22px; display:block;}
+#ptc .about h2{font-size:clamp(28px,4vw,40px); color:var(--green); margin-bottom:18px;}
+#ptc .about p{color:var(--muted); margin-bottom:16px;}
+#ptc .ticks{list-style:none; display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:20px;}
+#ptc .ticks li::before{content:"✓"; color:var(--white); background:var(--green-2); border-radius:50%; width:22px; height:22px; display:inline-grid; place-items:center; font-size:12px; margin-right:8px;}
+#ptc .filters{display:flex; justify-content:center; gap:10px; flex-wrap:wrap; margin-bottom:40px;}
+#ptc .filter{padding:9px 22px; border-radius:30px; border:1.5px solid var(--green); background:transparent; color:var(--green); cursor:pointer; font-family:inherit; font-size:14px; transition:.2s;}
+#ptc .filter.active,#ptc .filter:hover{background:var(--green); color:var(--white);}
+#ptc .grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(270px,1fr)); gap:26px;}
+#ptc .card{background:var(--white); border-radius:18px; overflow:hidden; box-shadow:0 8px 25px rgba(15,76,58,.08); transition:.35s;}
+#ptc .card:hover{transform:translateY(-8px); box-shadow:0 18px 40px rgba(15,76,58,.16);}
+#ptc .card.hide{display:none;}
+#ptc .card-img{height:200px; position:relative; display:grid; place-items:center; font-size:60px;}
+#ptc .card-img .pill{position:absolute; top:14px; left:14px; background:rgba(255,255,255,.92); color:var(--green); padding:4px 12px; border-radius:20px; font-size:12px; font-weight:600;}
+#ptc .card-body{padding:22px;}
+#ptc .card-body h3{font-size:22px; color:var(--green); margin-bottom:6px;}
+#ptc .card-body p{color:var(--muted); font-size:14px; margin-bottom:14px;}
+#ptc .card-meta{display:flex; justify-content:space-between; font-size:13px; color:var(--muted); border-top:1px solid #eee; padding-top:12px;}
+#ptc .g1{background:linear-gradient(135deg,#3a7bd5,#a8d8ea);}
+#ptc .g2{background:linear-gradient(135deg,#1f6f5c,#8fd3b6);}
+#ptc .g3{background:linear-gradient(135deg,#6a85b6,#bac8e0);}
+#ptc .g4{background:linear-gradient(135deg,#0b8457,#c5e99b);}
+#ptc .g5{background:linear-gradient(135deg,#b24592,#f15f79);}
+#ptc .g6{background:linear-gradient(135deg,#d9a441,#f6e1a8);}
+#ptc .packs{background:var(--green); color:var(--white);}
+#ptc .packs .sec-head h2{color:var(--white);}
+#ptc .packs .sec-head p{color:#c9dbd2;}
+#ptc .pgrid{display:grid; grid-template-columns:repeat(3,1fr); gap:26px;}
+#ptc .pack{background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.14); border-radius:20px; padding:36px 30px; transition:.3s;}
+#ptc .pack:hover{background:rgba(255,255,255,.1);}
+#ptc .pack.star{background:var(--white); color:var(--ink); transform:scale(1.04);}
+#ptc .pack.star h3{color:var(--green);}
+#ptc .pack h3{font-size:26px; margin-bottom:6px;}
+#ptc .pack .sub{opacity:.75; font-size:14px; margin-bottom:22px;}
+#ptc .pack ul{list-style:none; margin-bottom:28px;}
+#ptc .pack li{padding:8px 0; border-bottom:1px dashed rgba(128,128,128,.3); font-size:14px;}
+#ptc .pack li::before{content:"✦ "; color:var(--gold);}
+#ptc .ribbon{display:inline-block; background:var(--gold); color:var(--ink); font-size:11px; font-weight:600; padding:4px 12px; border-radius:20px; margin-bottom:14px; letter-spacing:1px;}
+#ptc .why{display:grid; grid-template-columns:repeat(4,1fr); gap:22px;}
+#ptc .why-box{background:var(--white); padding:32px 24px; border-radius:18px; text-align:center; transition:.3s;}
+#ptc .why-box:hover{background:var(--green); color:var(--white);}
+#ptc .why-box:hover p{color:#d6e5dd;}
+#ptc .why-box .ic{font-size:40px; margin-bottom:14px;}
+#ptc .why-box h3{font-size:19px; margin-bottom:8px;}
+#ptc .why-box p{color:var(--muted); font-size:14px; transition:.3s;}
+#ptc .faq{max-width:780px; margin:0 auto;}
+#ptc .q{background:var(--white); border-radius:14px; margin-bottom:14px; overflow:hidden;}
+#ptc .q button{width:100%; text-align:left; background:none; border:none; padding:20px 24px; font-family:inherit; font-size:16px; font-weight:500; cursor:pointer; display:flex; justify-content:space-between; align-items:center; color:var(--ink);}
+#ptc .q button span{font-size:22px; color:var(--gold); transition:.3s;}
+#ptc .q.open button span{transform:rotate(45deg);}
+#ptc .q .a{max-height:0; overflow:hidden; transition:max-height .35s ease; padding:0 24px; color:var(--muted);}
+#ptc .q.open .a{max-height:200px; padding-bottom:20px;}
+#ptc .cta{background:linear-gradient(120deg,var(--green),var(--green-2)); border-radius:26px; padding:60px 40px; text-align:center; color:var(--white);}
+#ptc .cta h2{font-size:clamp(26px,4vw,40px); margin-bottom:12px;}
+#ptc .cta p{opacity:.85; margin-bottom:28px;}
+#ptc footer{background:#0a3328; color:#a9c2b7; text-align:center; padding:34px 20px; font-size:14px; margin-top:90px;}
+#ptc footer .logo{justify-content:center; margin-bottom:12px;}
+#ptc .reveal{opacity:0; transform:translateY(40px); transition:all .8s ease;}
+#ptc .reveal.show{opacity:1; transform:none;}
+#ptc .top{position:fixed; right:20px; bottom:20px; width:46px; height:46px; border-radius:50%; background:var(--gold); border:none; font-size:20px; cursor:pointer; opacity:0; pointer-events:none; transition:.3s; z-index:60;}
+#ptc .top.on{opacity:1; pointer-events:auto;}
+@media(max-width:900px){
+  #ptc .about,#ptc .pgrid{grid-template-columns:1fr;}
+  #ptc .why{grid-template-columns:1fr 1fr;}
+  #ptc .pack.star{transform:none;}
+  #ptc .about-img{height:300px;}
+}
+@media(max-width:720px){
+  #ptc .burger{display:block;}
+  #ptc .menu{position:absolute; top:72px; left:0; right:0; background:var(--green); flex-direction:column; gap:0; max-height:0; overflow:hidden; transition:max-height .35s;}
+  #ptc .menu.open{max-height:400px;}
+  #ptc .menu li a{display:block; padding:15px 20px; border-top:1px solid rgba(255,255,255,.08);}
+  #ptc .why,#ptc .ticks{grid-template-columns:1fr;}
+  #ptc .sec{padding:65px 0;}
+}
+</style>
+</head>
+<body>
+<div id="ptc">
+
+  <nav class="nav">
+    <div class="wrap">
+      <a href="#ptc-home" class="logo">
+        <div class="logo-mark">⛰</div>
+        <div>Paramount<small>TOURISM CLUB</small></div>
+      </a>
+      <button class="burger" id="ptcBurger" aria-label="Menu">☰</button>
+      <ul class="menu" id="ptcMenu">
+        <li><a href="#ptc-home">Home</a></li>
+        <li><a href="#ptc-about">About</a></li>
+        <li><a href="#ptc-dest">Destinations</a></li>
+        <li><a href="#ptc-packs">Packages</a></li>
+        <li><a href="#ptc-faq">FAQ</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="hero" id="ptc-home">
+    <svg class="peaks" viewBox="0 0 1440 320" preserveAspectRatio="none"><path fill="#0a2d23" d="M0,256L120,160L240,224L360,96L480,192L600,64L720,176L840,112L960,208L1080,80L1200,192L1320,128L1440,224L1440,320L0,320Z"/></svg>
+    <div class="wrap">
+      <span class="tag">Explore • Discover • Belong</span>
+      <h1>Journey Beyond the <span>Ordinary</span> with Paramount</h1>
+      <p>Join a community of travelers exploring breathtaking valleys, mighty mountains and rich cultural heritage on well-planned, memorable group tours.</p>
+      <div class="hero-btns">
+        <a href="#ptc-dest" class="btn btn-gold">Explore Destinations</a>
+        <a href="#ptc-packs" class="btn btn-line">View Packages</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="sec" id="ptc-about">
+    <div class="wrap about">
+      <div class="about-img reveal">
+        <div class="badge"><b>Travel Together</b>Adventure • Culture • Nature</div>
+      </div>
+      <div class="reveal">
+        <span class="tag">About The Club</span>
+        <h2>More Than a Trip, It's a Travel Family</h2>
+        <p>Paramount Tourism Club brings together people who love to explore. We plan comfortable, safe and affordable tours so you can focus on what matters: the views, the food, the culture and the friendships made along the way.</p>
+        <p>From weekend getaways to multi-day northern expeditions, every journey is organized with care, from transport and stays to guided sightseeing.</p>
+        <ul class="ticks">
+          <li>Experienced Tour Guides</li>
+          <li>Comfortable Transport</li>
+          <li>Family-Friendly Trips</li>
+          <li>Group &amp; Private Tours</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="ptc-dest" style="padding-top:20px">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="tag">Top Destinations</span>
+        <h2>Where Will You Go Next?</h2>
+        <p>Handpicked places that promise unforgettable memories.</p>
+      </div>
+      <div class="filters">
+        <button class="filter active" data-f="all">All</button>
+        <button class="filter" data-f="mountain">Mountains</button>
+        <button class="filter" data-f="valley">Valleys</button>
+        <button class="filter" data-f="heritage">Heritage</button>
+      </div>
+      <div class="grid">
+        <div class="card reveal" data-cat="valley">
+          <div class="card-img g1"><span class="pill">Valley</span>🏔️</div>
+          <div class="card-body"><h3>Hunza Valley</h3><p>Ancient forts, cherry blossoms and views of towering snow-capped peaks.</p>
+          <div class="card-meta"><span>🕒 5–7 Days</span><span>⭐ Most Loved</span></div></div>
+        </div>
+        <div class="card reveal" data-cat="mountain">
+          <div class="card-img g3"><span class="pill">Mountains</span>🗻</div>
+          <div class="card-body"><h3>Skardu</h3><p>Cold deserts, crystal lakes and the gateway to the world's highest peaks.</p>
+          <div class="card-meta"><span>🕒 6–8 Days</span><span>🧭 Adventure</span></div></div>
+        </div>
+        <div class="card reveal" data-cat="valley">
+          <div class="card-img g2"><span class="pill">Valley</span>🌲</div>
+          <div class="card-body"><h3>Swat &amp; Kalam</h3><p>Lush green meadows, rivers and pine forests known as the Switzerland of the East.</p>
+          <div class="card-meta"><span>🕒 3–4 Days</span><span>👨‍👩‍👧 Family</span></div></div>
+        </div>
+        <div class="card reveal" data-cat="mountain">
+          <div class="card-img g4"><span class="pill">Mountains</span>⛺</div>
+          <div class="card-body"><h3>Fairy Meadows</h3><p>Camp under the stars beneath one of the most stunning mountain faces on earth.</p>
+          <div class="card-meta"><span>🕒 4–5 Days</span><span>🥾 Trekking</span></div></div>
+        </div>
+        <div class="card reveal" data-cat="valley">
+          <div class="card-img g5"><span class="pill">Valley</span>🌸</div>
+          <div class="card-body"><h3>Neelum Valley</h3><p>Turquoise rivers, wooden villages and peaceful scenery at every turn.</p>
+          <div class="card-meta"><span>🕒 3–5 Days</span><span>📸 Scenic</span></div></div>
+        </div>
+        <div class="card reveal" data-cat="heritage">
+          <div class="card-img g6"><span class="pill">Heritage</span>🕌</div>
+          <div class="card-body"><h3>Lahore Heritage Walk</h3><p>Mughal architecture, historic bazaars and the famous food streets.</p>
+          <div class="card-meta"><span>🕒 1–2 Days</span><span>🍢 Food &amp; Culture</span></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec packs" id="ptc-packs">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="tag">Tour Packages</span>
+        <h2>Choose Your Adventure</h2>
+        <p>Flexible plans for solo travelers, friends and families.</p>
+      </div>
+      <div class="pgrid">
+        <div class="pack reveal">
+          <h3>Weekend Escape</h3>
+          <div class="sub">Short &amp; refreshing getaways</div>
+          <ul>
+            <li>2–3 Days Trip</li>
+            <li>Shared Transport</li>
+            <li>Standard Hotel Stay</li>
+            <li>Breakfast Included</li>
+            <li>Group Sightseeing</li>
+          </ul>
+          <a href="#ptc-faq" class="btn btn-line">Learn More</a>
+        </div>
+        <div class="pack star reveal">
+          <span class="ribbon">MOST POPULAR</span>
+          <h3>Northern Explorer</h3>
+          <div class="sub">The complete mountain experience</div>
+          <ul>
+            <li>5–7 Days Trip</li>
+            <li>Comfortable Coaster / Prado</li>
+            <li>Quality Hotels &amp; Resorts</li>
+            <li>Breakfast &amp; Dinner</li>
+            <li>Professional Tour Guide</li>
+          </ul>
+          <a href="#ptc-faq" class="btn btn-gold">Learn More</a>
+        </div>
+        <div class="pack reveal">
+          <h3>Private Tour</h3>
+          <div class="sub">Your plan, your pace</div>
+          <ul>
+            <li>Custom Duration</li>
+            <li>Private Vehicle</li>
+            <li>Hotel of Your Choice</li>
+            <li>Personalized Itinerary</li>
+            <li>Ideal for Families &amp; Couples</li>
+          </ul>
+          <a href="#ptc-faq" class="btn btn-line">Learn More</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="tag">Why Choose Us</span>
+        <h2>Travel With Confidence</h2>
+      </div>
+      <div class="why">
+        <div class="why-box reveal"><div class="ic">🛡️</div><h3>Safe Travel</h3><p>Safety comes first on every route and every stay.</p></div>
+        <div class="why-box reveal"><div class="ic">💰</div><h3>Fair Pricing</h3><p>Transparent packages with no hidden charges.</p></div>
+        <div class="why-box reveal"><div class="ic">🧭</div><h3>Expert Guides</h3><p>Local knowledge that brings every place to life.</p></div>
+        <div class="why-box reveal"><div class="ic">🤝</div><h3>Community</h3><p>Travel with like-minded people and make new friends.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="ptc-faq" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="tag">FAQ</span>
+        <h2>Frequently Asked Questions</h2>
+      </div>
+      <div class="faq">
+        <div class="q"><button>How do I join a tour?<span>+</span></button><div class="a">Choose a destination and package that suits you, then reserve your seat before the booking deadline of that trip.</div></div>
+        <div class="q"><button>Are tours suitable for families?<span>+</span></button><div class="a">Yes. Most of our trips are family-friendly, and private tours can be fully customized for children and elders.</div></div>
+        <div class="q"><button>What is included in the package?<span>+</span></button><div class="a">Packages usually include transport, accommodation, selected meals and guided sightseeing. Each package lists its exact inclusions.</div></div>
+        <div class="q"><button>Can I request a custom itinerary?<span>+</span></button><div class="a">Absolutely. Our Private Tour option lets you choose your destinations, duration and hotels.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <div class="cta reveal">
+      <h2>Your Next Adventure Is Waiting</h2>
+      <p>Pack your bags and explore the most beautiful places with Paramount Tourism Club.</p>
+      <a href="#ptc-dest" class="btn btn-gold">Start Exploring</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="logo"><div class="logo-mark">⛰</div><div>Paramount<small>TOURISM CLUB</small></div></div>
+    <p>© <span id="ptcYear"></span> Paramount Tourism Club. All rights reserved.</p>
+  </footer>
+
+  <button class="top" id="ptcTop" aria-label="Back to top">↑</button>
+</div>
+
+<script>
+(function(){
+  var root=document.getElementById('ptc');
+
+  var burger=document.getElementById('ptcBurger'), menu=document.getElementById('ptcMenu');
+  burger.addEventListener('click',function(){menu.classList.toggle('open');});
+  menu.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){menu.classList.remove('open');});});
+
+  root.querySelectorAll('a[href^="#ptc-"]').forEach(function(a){
+    a.addEventListener('click',function(e){
+      var t=document.querySelector(a.getAttribute('href'));
+      if(t){e.preventDefault(); window.scrollTo({top:t.getBoundingClientRect().top+window.pageYOffset-70,behavior:'smooth'});}
+    });
+  });
+
+  var filters=root.querySelectorAll('.filter'), cards=root.querySelectorAll('.card');
+  filters.forEach(function(btn){
+    btn.addEventListener('click',function(){
+      filters.forEach(function(b){b.classList.remove('active');});
+      btn.classList.add('active');
+      var f=btn.getAttribute('data-f');
+      cards.forEach(function(c){
+        c.classList.toggle('hide', f!=='all' && c.getAttribute('data-cat')!==f);
+      });
+    });
+  });
+
+  root.querySelectorAll('.q button').forEach(function(b){
+    b.addEventListener('click',function(){
+      var q=b.parentElement, isOpen=q.classList.contains('open');
+      root.querySelectorAll('.q').forEach(function(x){x.classList.remove('open');});
+      if(!isOpen) q.classList.add('open');
+    });
+  });
+
+  var items=root.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){if(en.isIntersecting){en.target.classList.add('show'); io.unobserve(en.target);}});
+    },{threshold:.15});
+    items.forEach(function(i){io.observe(i);});
+  } else { items.forEach(function(i){i.classList.add('show');}); }
+
+  var top=document.getElementById('ptcTop');
+  window.addEventListener('scroll',function(){top.classList.toggle('on', window.pageYOffset>500);});
+  top.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+
+  document.getElementById('ptcYear').textContent=new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
